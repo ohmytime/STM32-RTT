@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "segger_rtt.h": "c",
+        "rttlogger.h": "c"
+    }
+}
