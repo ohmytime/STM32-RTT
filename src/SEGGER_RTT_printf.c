@@ -428,6 +428,47 @@ int SEGGER_RTT_vprintf(unsigned BufferIndex, const char * sFormat, va_list * pPa
       }
       break;
 #endif
+      //！支持二进制
+#if (SEGGER_RTT_PRINT_BINARY_ENABLE != 0)
+      case 'b':
+      case 'B':
+      {
+        int i, loop;
+        unsigned char *p = NULL;
+        v = va_arg(*pParamList, int);
+        if (c == 'b' && v <= 255) // 显示8位2进制
+        {
+          loop = 1;
+          p = (unsigned char *)&v; // p先指向v字节的地址, 即v的最低位字节地址
+        }
+        else
+        { // 显示32位2进制
+          loop = 4;
+          p = (unsigned char *)&v + 3; // p先指向v后面第3个字节的地址, 即v的最高位字节地址
+        }
+
+        unsigned char byte;
+        unsigned char mask;
+        for (i = 0; i < loop; i++)
+        {
+          byte = *(p - i);
+          for (int k = 0; k < 8; k++)
+          {
+            mask = 0x80 >> k;
+            if (byte & mask)
+            {
+              _StoreChar(&BufferDesc, '1');
+            }
+            else
+            {
+              _StoreChar(&BufferDesc, '0');
+            }
+          }
+          _StoreChar(&BufferDesc, ' ');
+        }
+      }
+      break;
+#endif
       case 'u':
         v = va_arg(*pParamList, int);
         _PrintUnsigned(&BufferDesc, (unsigned)v, 10u, NumDigits, FieldWidth, FormatFlags);

@@ -108,6 +108,12 @@ Revision: $Rev: 24316 $
     #define SEGGER_RTT_PRINT_FLOAT_ENABLE                 (1)
 #endif
 
+//! 打印二进制的支持
+// https://zhuanlan.zhihu.com/p/150820820
+#ifndef SEGGER_RTT_PRINT_BINARY_ENABLE
+    #define SEGGER_RTT_PRINT_BINARY_ENABLE                 (1)
+#endif
+
 /*********************************************************************
 *
 *       RTT memcpy configuration

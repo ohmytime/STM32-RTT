@@ -9,8 +9,8 @@ int main(void)
     {
         cnt++;
         LOGI("This is Info");
-        LOGW("如果想显示中文，请使用RTT Client !");
-        LOGE("This is an error info: %d", cnt);
+        LOGW("如果想显示中文,请使用RTT Client !");
+        LOGE("Value: %d, 0b%b", cnt,cnt);
         HAL_Delay(1000);
     }
 
