@@ -6,12 +6,10 @@ void Delay(uint16_t n)
     {
         n--;
     }
-    
+
 }
 int main(void)
 {
-
-
     int cnt = 0;
     float fCnt = 3.1415926;
     LOG_CLEAR();
